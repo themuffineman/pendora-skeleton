@@ -17,7 +17,6 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          
             <nav className="flex justify-between items-center bg-slate-300 p-4 ">
               <h1 className="text-xl font-bold tracking-tighter cursor-pointer"><Link href="/">MuffinChat 🧁</Link></h1>
               <div className="flex gap-4">
@@ -33,6 +32,7 @@ export default function RootLayout({ children }) {
             </nav>
           <div className="flex min-h-screen flex-col items-center p-24">
             {children}
+            {/* <Toaster/> */}
           </div>
         </body>
       </html>

@@ -1,24 +1,37 @@
-import React, {useCallback} from 'react'
+"use client"
+
+import React, {useCallback, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
-import { Input } from "@/components/ui/input"
 
 
 const DropZone = () => {
-    const onDrop = useCallback(acceptedFiles => {
-        // Do something with the files
-      }, [])
-      const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+
+    const [file, setFile]= useState();
+
+
+    const onDrop = useCallback((acceptedFiles) => {
+        acceptedFiles.forEach((file) => {
+          const reader = new FileReader()
     
-      return (
-        <div {...getRootProps()}>
-          <Input {...getInputProps()} />
-          {
-            isDragActive ?
-              <p>Drop the files here ...</p> :
-              <p>Drag 'n' drop some files here, or click to select files</p>
+          reader.onabort = () => console.log('file reading was aborted')
+          reader.onerror = () => console.log('file reading has failed')
+          reader.onload = () => {
+          // Do whatever you want with the file contents
+            const binaryStr = reader.result
+            console.log('this is the string', binaryStr)
           }
+          reader.readAsArrayBuffer(file)
+        })
+        
+    }, [])
+    const {getRootProps, getInputProps} = useDropzone({onDrop})
+
+    return (
+        <div {...getRootProps()}>
+        <input {...getInputProps()} />
+        <p>Drag 'n' drop some files here, or click to select files</p>
         </div>
-      )
+    )
 }
 
 export default DropZone
