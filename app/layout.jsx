@@ -17,13 +17,9 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-            <ClerkLoading>
-              <div className="absolute h-full w-full z-20 backdrop-blur-md animate-pulse bg-transparent flex items-center justify-center top-0 left-0">
-                <span className="rounded-full w-10 h-10 border-4 border-black border-t-transparent animate-spin "/>
-              </div>
-            </ClerkLoading>
+          
             <nav className="flex justify-between items-center bg-slate-300 p-4 ">
-              <h1 className="text-xl font-bold tracking-tighter cursor-pointer"><Link href="/">Pendora AI</Link></h1>
+              <h1 className="text-xl font-bold tracking-tighter cursor-pointer"><Link href="/">MuffinChat 🧁</Link></h1>
               <div className="flex gap-4">
                 {!userId? (
                   <>
